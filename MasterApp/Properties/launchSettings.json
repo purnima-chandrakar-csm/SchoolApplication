@@ -1,0 +1,22 @@
+﻿{
+  "profiles": {
+    "MasterApp": {
+      "commandName": "IIS",
+      "workingDirectory": "C:\\Users\\purnima.chandrakar\\source\\repos\\Master\\MasterApp",
+      "launchBrowser": true,
+      "launchUrl": "http://student.csmpl.com",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://student.csmpl.com",
+      "sslPort": 0
+    }
+  }
+}

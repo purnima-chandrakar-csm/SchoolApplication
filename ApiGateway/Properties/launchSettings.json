@@ -1,0 +1,22 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/apiGateway",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "ApiGateway": {
+      "commandName": "IIS",
+      "launchBrowser": true,
+      "workingDirectory": "C:\\Users\\purnima.chandrakar\\source\\repos\\Master\\ApiGateway",
+      "launchUrl": "api/Student/Values",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

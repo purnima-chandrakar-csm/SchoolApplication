@@ -1,0 +1,23 @@
+{
+  "profiles": {
+    "DashboardApp": {
+      "commandName": "IIS",
+      "workingDirectory": "C:\\Users\\purnima.chandrakar\\source\\repos\\Master\\DashboardApp",
+      "launchBrowser": true,
+      "launchUrl": "Admin",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://dashboard.csmpl.com",
+      "sslPort": 0
+    }
+  }
+}

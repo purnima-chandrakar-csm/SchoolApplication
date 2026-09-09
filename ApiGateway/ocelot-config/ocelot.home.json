@@ -1,0 +1,43 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/HomeApi/api/Teacher/Values",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "80"
+        }
+
+      ],
+      "UpstreamPathTemplate": "/api/Teacher/Values",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/HomeApi/api/Teacher/GetTeacher",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "80"
+        }
+
+      ],
+      "UpstreamPathTemplate": "/api/Teacher/GetTeacher",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/HomeApi/api/Teacher/CreateTeacher",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "80"
+        }
+
+      ],
+      "UpstreamPathTemplate": "/api/Teacher/CreateTeacher",
+      "UpstreamHttpMethod": [ "POST" ]
+    }
+  ]
+}

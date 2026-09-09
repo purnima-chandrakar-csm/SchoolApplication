@@ -1,0 +1,118 @@
+﻿@model HomeEF.Teacher
+
+@{
+    ViewData["Title"] = "Create Teacher";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Create Teacher</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form asp-controller="Admin"
+                          asp-action="CreateTeacher"
+                          method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger mb-3">
+                        </div>
+
+                        <!-- Teacher Name -->
+                        <div class="mb-3">
+
+                            <label asp-for="TeacherName"
+                                   class="form-label">
+                                Teacher Name
+                            </label>
+
+                            <input asp-for="TeacherName"
+                                   class="form-control"
+                                   placeholder="Enter teacher name" />
+
+                            <span asp-validation-for="TeacherName"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <!-- Teacher Email -->
+                        <div class="mb-3">
+
+                            <label asp-for="TeacherEmail"
+                                   class="form-label">
+                                Teacher Email
+                            </label>
+
+                            <input asp-for="TeacherEmail"
+                                   type="email"
+                                   class="form-control"
+                                   placeholder="Enter teacher email" />
+
+                            <span asp-validation-for="TeacherEmail"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <!-- Teacher Phone -->
+                        <div class="mb-3">
+
+                            <label asp-for="TeacherPhone"
+                                   class="form-label">
+                                Teacher Phone
+                            </label>
+
+                            <input asp-for="TeacherPhone"
+                                   type="tel"
+                                   class="form-control"
+                                   placeholder="Enter teacher phone" />
+
+                            <span asp-validation-for="TeacherPhone"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <div class="mt-4">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Create Teacher
+                            </button>
+
+                            <a asp-controller="Admin"
+                               asp-action="Index"
+                               class="btn btn-secondary ms-2">
+                                Cancel
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

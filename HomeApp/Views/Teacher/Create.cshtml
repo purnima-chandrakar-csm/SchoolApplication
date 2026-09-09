@@ -1,0 +1,39 @@
+﻿
+@model HomeEF.Teacher
+
+@{
+    ViewData["Title"] = "Create Teacher";
+}
+
+<h2>Create Teacher</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="TeacherName" class="control-label"></label>
+                <input asp-for="TeacherName" class="form-group-control form-control" />
+                <span asp-validation-for="TeacherName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="TeacherEmail" class="control-label"></label>
+                <input asp-for="TeacherEmail" type="email" class="form-control" />
+                <span asp-validation-for="TeacherEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="TeacherPhone" class="control-label"></label>
+                <input asp-for="TeacherPhone" class="form-control" />
+                <span asp-validation-for="TeacherPhone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Save Teacher</button>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+

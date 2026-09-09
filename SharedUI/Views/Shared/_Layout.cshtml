@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - My Application</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Your existing application CSS -->
+    <link rel="stylesheet"
+          href="~/css/site.css" />
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --sidebar-bg: #111827;
+            --sidebar-hover: #1f2937;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --background: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+        }
+
+        /* Top Navbar */
+        .app-navbar {
+            height: 64px;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .app-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .app-brand-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .app-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #e0e7ff;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Main Layout */
+        .app-wrapper {
+            display: flex;
+            min-height: calc(100vh - 64px);
+        }
+
+        /* Sidebar */
+        .app-sidebar {
+            width: 240px;
+            background: var(--sidebar-bg);
+            color: #ffffff;
+            padding: 20px 12px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-title {
+            color: #9ca3af;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 12px;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 12px;
+            margin-bottom: 4px;
+            border-radius: 8px;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-link:hover {
+            background: var(--sidebar-hover);
+            color: #ffffff;
+        }
+
+        .sidebar-link.active {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .sidebar-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* Content */
+        .app-content {
+            flex: 1;
+            padding: 28px;
+            min-width: 0;
+        }
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .page-subtitle {
+            margin-top: 6px;
+            color: var(--text-muted);
+        }
+
+        /* Content Card */
+        .content-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Footer */
+        .app-footer {
+            padding: 18px 28px;
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         TOP NAVBAR
+         ========================= -->
+    <nav class="app-navbar">
+
+        <a class="app-brand"
+           asp-controller="Home"
+           asp-action="Index">
+
+            <span class="app-brand-icon">M</span>
+
+            <span>My Application</span>
+        </a>
+
+        <div class="app-user">
+            <span class="text-muted d-none d-md-inline">
+                Welcome back
+            </span>
+
+            <div class="user-avatar">
+                U
+            </div>
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN APPLICATION
+         ========================= -->
+    <div class="app-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="app-sidebar">
+
+            <div class="sidebar-title">
+                Navigation
+            </div>
+
+            <a class="sidebar-link"
+              href="http://teacher.csmpl.com/Teacher">
+
+                <span class="sidebar-icon">⌂</span>
+                <span>Home</span>
+            </a>
+
+            <a class="sidebar-link"
+               href="http://student.csmpl.com/Student">
+                
+
+                <span class="sidebar-icon">▣</span>
+                <span>Master</span>
+            </a>
+
+            <a class="sidebar-link"
+               href="http://dashboard.csmpl.com/Admin">
+
+                <span class="sidebar-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+        </aside>
+
+
+        <!-- PAGE CONTENT -->
+        <div class="d-flex flex-column flex-grow-1">
+
+            <main class="app-content">
+
+                @RenderBody()
+
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="app-footer">
+                <div class="d-flex justify-content-between">
+                    <span>
+                        © @DateTime.Now.Year My Application
+                    </span>
+
+                    <span>
+                        All rights reserved.
+                    </span>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SCRIPTS
+         ========================= -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

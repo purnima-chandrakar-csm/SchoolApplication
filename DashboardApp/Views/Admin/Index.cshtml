@@ -1,0 +1,189 @@
+﻿@model DashboardApp.ViewModels.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Admin Dashboard</h2>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="row">
+
+        <!-- ========================= -->
+        <!-- TEACHERS -->
+        <!-- ========================= -->
+
+        <div class="col-md-6">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-primary text-white
+                            d-flex justify-content-between align-items-center">
+
+                    <h5 class="mb-0">Teachers</h5>
+
+                    <a asp-controller="Admin"
+                       asp-action="CreateTeacher"
+                       class="btn btn-light btn-sm">
+                        + Create Teacher
+                    </a>
+
+                </div>
+
+                <div class="card-body">
+
+                    @if (Model.Teachers != null && Model.Teachers.Any())
+                    {
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-hover">
+
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var teacher in Model.Teachers)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                @teacher.TeacherId
+                                            </td>
+
+                                            <td>
+                                                @teacher.TeacherName
+                                            </td>
+
+                                            <td>
+                                                <a asp-controller="Admin"
+                                                   asp-action="ViewTeacher"
+                                                   asp-route-id="@teacher.TeacherId"
+                                                   class="btn btn-info btn-sm">
+                                                    View
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info mb-0">
+                            No teachers found.
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- STUDENTS -->
+        <!-- ========================= -->
+
+        <div class="col-md-6">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-success text-white
+                            d-flex justify-content-between align-items-center">
+
+                    <h5 class="mb-0">Students</h5>
+
+                    <a asp-controller="Admin"
+                       asp-action="CreateStudent"
+                       class="btn btn-light btn-sm">
+                        + Create Student
+                    </a>
+
+                </div>
+
+                <div class="card-body">
+
+                    @if (Model.Students != null && Model.Students.Any())
+                    {
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-hover">
+
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var student in Model.Students)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                @student.StudentId
+                                            </td>
+
+                                            <td>
+                                                @student.StudentName
+                                            </td>
+
+                                            <td>
+                                                <a asp-controller="Admin"
+                                                   asp-action="ViewStudent"
+                                                   asp-route-id="@student.StudentId"
+                                                   class="btn btn-info btn-sm">
+                                                    View
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info mb-0">
+                            No students found.
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

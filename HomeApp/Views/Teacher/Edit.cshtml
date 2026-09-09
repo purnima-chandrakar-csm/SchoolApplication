@@ -1,0 +1,51 @@
+﻿
+@model HomeEF.Teacher
+
+@{
+    ViewData["Title"] = "Edit Teacher";
+}
+
+<h2>Edit Teacher Profile</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <!-- Global error display for API validation crashes (e.g. Email duplicate errors) -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Hidden field is mandatory so the API knows which unique ID to update -->
+            <input type="hidden" asp-for="TeacherId" />
+
+            <div class="form-group mb-3">
+                <label asp-for="TeacherName" class="control-label">Full Name</label>
+                <input asp-for="TeacherName" class="form-control" />
+                <span asp-validation-for="TeacherName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="TeacherEmail" class="control-label">Email Address</label>
+                <input asp-for="TeacherEmail" type="email" class="form-control" />
+                <span asp-validation-for="TeacherEmail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="TeacherPhone" class="control-label">Phone Number</label>
+                <input asp-for="TeacherPhone" class="form-control" />
+                <span asp-validation-for="TeacherPhone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-warning">Apply Changes</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Built-in .NET client-side validation scripts -->
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

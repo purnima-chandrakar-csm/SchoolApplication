@@ -1,0 +1,85 @@
+﻿@model HomeEF.Teacher
+
+@{
+    ViewData["Title"] = "Teacher Details";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Teacher Details</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-4 fw-bold">
+                            Teacher ID
+                        </div>
+
+                        <div class="col-sm-8">
+                            @Model.TeacherId
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-4 fw-bold">
+                            Teacher Name
+                        </div>
+
+                        <div class="col-sm-8">
+                            @Model.TeacherName
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-4 fw-bold">
+                            Email
+                        </div>
+
+                        <div class="col-sm-8">
+                            @Model.TeacherEmail
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-4 fw-bold">
+                            Phone
+                        </div>
+
+                        <div class="col-sm-8">
+                            @Model.TeacherPhone
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+                    <a asp-controller="Admin"
+                       asp-action="Index"
+                       class="btn btn-secondary">
+                        Back to Teachers
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

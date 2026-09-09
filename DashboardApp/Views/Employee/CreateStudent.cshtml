@@ -1,0 +1,118 @@
+﻿@model MasterEF.Student
+
+@{
+    ViewData["Title"] = "Create Student";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Create Student</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form asp-controller="Admin"
+                          asp-action="CreateStudent"
+                          method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger mb-3">
+                        </div>
+
+                        <!-- Student Name -->
+                        <div class="mb-3">
+
+                            <label asp-for="StudentName"
+                                   class="form-label">
+                                Student Name
+                            </label>
+
+                            <input asp-for="StudentName"
+                                   class="form-control"
+                                   placeholder="Enter student name" />
+
+                            <span asp-validation-for="StudentName"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <!-- Student Email -->
+                        <div class="mb-3">
+
+                            <label asp-for="StudentEmail"
+                                   class="form-label">
+                                Student Email
+                            </label>
+
+                            <input asp-for="StudentEmail"
+                                   type="email"
+                                   class="form-control"
+                                   placeholder="Enter student email" />
+
+                            <span asp-validation-for="StudentEmail"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <!-- Student Phone -->
+                        <div class="mb-3">
+
+                            <label asp-for="StudentPhone"
+                                   class="form-label">
+                                Student Phone
+                            </label>
+
+                            <input asp-for="StudentPhone"
+                                   type="tel"
+                                   class="form-control"
+                                   placeholder="Enter student phone" />
+
+                            <span asp-validation-for="StudentPhone"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <div class="mt-4">
+
+                            <button type="submit"
+                                    class="btn btn-success">
+                                Create Student
+                            </button>
+
+                            <a asp-controller="Admin"
+                               asp-action="Index"
+                               class="btn btn-secondary ms-2">
+                                Cancel
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

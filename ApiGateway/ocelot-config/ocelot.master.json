@@ -1,0 +1,44 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/MasterApi/api/Student/Values",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "80"
+        }
+
+      ],
+      "UpstreamPathTemplate": "/api/Student/Values",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/MasterApi/api/Student/GetStudent",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "80"
+        }
+
+      ],
+      "UpstreamPathTemplate": "/api/Student/GetStudent",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/MasterApi/api/Student/CreateStudent",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "80"
+        }
+
+      ],
+      "UpstreamPathTemplate": "/api/Student/CreateStudent",
+      "UpstreamHttpMethod": [ "POST" ]
+    }
+  ]
+}
+
