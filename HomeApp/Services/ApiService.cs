@@ -1,8 +1,10 @@
-﻿using HomeEF;
+﻿using FileStorage;
+using HomeEF;
 using HttpRequests;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -103,6 +105,68 @@ namespace HomeApp.Services
                 await response.Content.ReadAsStringAsync();
 
             return (false, errorMessage);
+        }
+
+        public async Task<MessageEF> UploadFileAsync(MyFileRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync(
+                "File/SaveFileToLocaBase64",
+                request);
+
+            string body = await response.Content.ReadAsStringAsync();
+            if (string.IsNullOrWhiteSpace(body))
+            {
+                return new MessageEF
+                {
+                    Msg = response.IsSuccessStatusCode ? "Success" : "Upload failed",
+                    Satus = response.IsSuccessStatusCode ? "True" : "False"
+                };
+            }
+
+            try
+            {
+                return JsonConvert.DeserializeObject<MessageEF>(body)
+                    ?? new MessageEF { Msg = body, Satus = "False" };
+            }
+            catch
+            {
+                return new MessageEF { Msg = body, Satus = "False" };
+            }
+        }
+
+        public async Task<(byte[] Content, string ContentType, string FileName, bool Success)> DownloadFileAsync(
+            string path)
+        {
+            var response = await _httpClient.GetAsync(
+                $"File/DownloadFileFromLocal?path={System.Uri.EscapeDataString(path)}");
+
+            byte[] content = await response.Content.ReadAsByteArrayAsync();
+            string contentType = response.Content.Headers.ContentType?.ToString()
+                ?? "application/octet-stream";
+            string fileName = GetDownloadFileName(response.Content.Headers.ContentDisposition)
+                ?? "download";
+
+            return (content, contentType, fileName, response.IsSuccessStatusCode);
+        }
+
+        private static string GetDownloadFileName(ContentDispositionHeaderValue contentDisposition)
+        {
+            if (contentDisposition == null)
+            {
+                return null;
+            }
+
+            if (!string.IsNullOrWhiteSpace(contentDisposition.FileNameStar))
+            {
+                return contentDisposition.FileNameStar.Trim('"');
+            }
+
+            if (!string.IsNullOrWhiteSpace(contentDisposition.FileName))
+            {
+                return contentDisposition.FileName.Trim('"');
+            }
+
+            return null;
         }
     }
 }

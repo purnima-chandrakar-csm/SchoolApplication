@@ -30,7 +30,7 @@ namespace HomeApi.Services
                 teacher.TeacherPhone,
             };
 
-            return await con.ExecuteAsync("sp_Teacher", parameters, commandType: CommandType.StoredProcedure);
+            return await con.ExecuteAsync("Pcsp_Teacher", parameters, commandType: CommandType.StoredProcedure);
         }
 
         public async Task<bool> DeleteTeacherAsync(int id)
@@ -44,7 +44,7 @@ namespace HomeApi.Services
             };
 
 
-            return await con.ExecuteAsync("sp_Teacher", parameters, commandType: CommandType.StoredProcedure) > 0;
+            return await con.ExecuteAsync("Pcsp_Teacher", parameters, commandType: CommandType.StoredProcedure) > 0;
         }
 
         public async Task<IEnumerable<Teacher>> GetAllTeacherAsync()
@@ -53,7 +53,7 @@ namespace HomeApi.Services
 
 
             return await con.QueryAsync<Teacher>(
-                "sp_Teacher",
+                "Pcsp_Teacher",
                 new { Action = "SelectAll" },
                 commandType: CommandType.StoredProcedure
             );
@@ -68,7 +68,7 @@ namespace HomeApi.Services
 
 
                 return await con.QueryFirstOrDefaultAsync<Teacher>(
-                    "sp_Teacher",
+                    "Pcsp_Teacher",
                     new { Action = "Select", TeacherId = id },
                     commandType: CommandType.StoredProcedure
                 );
@@ -92,7 +92,7 @@ namespace HomeApi.Services
                 teacher.TeacherId,
             };
 
-            return await con.ExecuteAsync("sp_Teacher", parameters, commandType: CommandType.StoredProcedure) > 0;
+            return await con.ExecuteAsync("Pcsp_Teacher", parameters, commandType: CommandType.StoredProcedure) > 0;
         }
 
        

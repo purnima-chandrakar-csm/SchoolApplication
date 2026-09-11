@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group mb-3">
@@ -27,6 +27,10 @@
                 <label asp-for="TeacherPhone" class="control-label"></label>
                 <input asp-for="TeacherPhone" class="form-control" />
                 <span asp-validation-for="TeacherPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="control-label">Document</label>
+                <input type="file" name="document" class="form-control" />
             </div>
 
             <div class="form-group">

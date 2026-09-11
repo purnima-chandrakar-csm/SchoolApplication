@@ -8,6 +8,7 @@
     <ProjectReference Include="..\MasterEF\MasterEF.csproj" />
     <ProjectReference Include="..\HttpRequests\HttpRequests.csproj" />
     <ProjectReference Include="..\SharedUI\SharedUI.csproj" />
+    <ProjectReference Include="..\FileStorage\FileStorage.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FileStorage;
 using HomeApi.Services;
 
 namespace HomeApi
@@ -39,6 +40,7 @@ namespace HomeApi
             }
 
             services.AddScoped<ITeacherService>(provider => new TeacherService(connectionString));
+            services.AddScoped<ILocalFileService, LocalFileService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HomeApi", Version = "v1" });

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MasterEF\MasterEF.csproj" />
+    <ProjectReference Include="..\FileStorage\FileStorage.csproj" />
   </ItemGroup>
 
 </Project>

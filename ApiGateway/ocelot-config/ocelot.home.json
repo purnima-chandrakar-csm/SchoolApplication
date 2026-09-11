@@ -38,6 +38,30 @@
       ],
       "UpstreamPathTemplate": "/api/Teacher/CreateTeacher",
       "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/HomeApi/api/File/SaveFileToLocaBase64",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/HomeFile/SaveFileToLocaBase64",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/HomeApi/api/File/DownloadFileFromLocal",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/HomeFile/DownloadFileFromLocal",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ]
 }

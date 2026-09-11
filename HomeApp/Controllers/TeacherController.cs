@@ -1,6 +1,10 @@
-﻿using HomeEF;
+﻿using FileStorage;
+using HomeEF;
 using HomeApp.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace HomeApp.Controllers
@@ -38,7 +42,8 @@ namespace HomeApp.Controllers
         // POST: Teacher/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Teacher teacher)
+        [RequestSizeLimit(52428800)]
+        public async Task<IActionResult> Create(Teacher teacher, IFormFile document)
         {
             if (!ModelState.IsValid)
             {
@@ -50,6 +55,7 @@ namespace HomeApp.Controllers
 
             if (success)
             {
+                await TryUploadDocumentAsync(document, "Teachers");
                 return RedirectToAction(nameof(Index));
             }
 
@@ -58,6 +64,22 @@ namespace HomeApp.Controllers
                 "An error occurred while creating the teacher record.");
 
             return View(teacher);
+        }
+
+        public async Task<IActionResult> Download(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return NotFound();
+            }
+
+            var result = await _apiService.DownloadFileAsync(path);
+            if (!result.Success || result.Content == null || result.Content.Length == 0)
+            {
+                return NotFound();
+            }
+
+            return File(result.Content, result.ContentType, result.FileName);
         }
 
         // GET: Teacher/Edit/5
@@ -114,6 +136,36 @@ namespace HomeApp.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task TryUploadDocumentAsync(IFormFile document, string folderName)
+        {
+            if (document == null || document.Length == 0)
+            {
+                return;
+            }
+
+            using var memoryStream = new MemoryStream();
+            await document.CopyToAsync(memoryStream);
+            string uniqueName = $"{Guid.NewGuid():N}_{Path.GetFileName(document.FileName)}";
+
+            MessageEF uploadResult = await _apiService.UploadFileAsync(new MyFileRequest
+            {
+                FolderName = folderName,
+                FileName = uniqueName,
+                FileContenctBase64 = Convert.ToBase64String(memoryStream.ToArray())
+            });
+
+            if (uploadResult.Satus == "True")
+            {
+                TempData["UploadedPath"] = $"{folderName}/{uniqueName}";
+                TempData["SuccessMessage"] = "Teacher created and file uploaded successfully.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] =
+                    "Teacher was created, but the file could not be uploaded: " + uploadResult.Msg;
+            }
         }
     }
 }
