@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FileStorage;
 using MasterApi.Services;
 
 namespace MasterApi
@@ -39,6 +40,7 @@ namespace MasterApi
             }
 
             services.AddScoped<IStudentService>(provider => new StudentService(connectionString));
+            services.AddScoped<ILocalFileService, LocalFileService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MasterApi", Version = "v1" });

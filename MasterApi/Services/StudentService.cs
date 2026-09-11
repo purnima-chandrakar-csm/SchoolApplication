@@ -29,7 +29,7 @@ namespace MasterApi.Services
                 student.StudentPhone,
             };
 
-            return await con.ExecuteAsync("sp_Student", parameters, commandType: CommandType.StoredProcedure);
+            return await con.ExecuteAsync("Pcsp_Student", parameters, commandType: CommandType.StoredProcedure);
         }
 
         public async Task<bool> DeleteStudentAsync(int id)
@@ -43,7 +43,7 @@ namespace MasterApi.Services
             };
 
            
-            return await con.ExecuteAsync("sp_Student", parameters, commandType: CommandType.StoredProcedure) > 0;
+            return await con.ExecuteAsync("Pcsp_Student", parameters, commandType: CommandType.StoredProcedure) > 0;
         }
 
         public async Task<IEnumerable<Student>> GetAllStudentAsync()
@@ -52,7 +52,7 @@ namespace MasterApi.Services
 
          
             return await con.QueryAsync<Student>(
-                "sp_Student",
+                "Pcsp_Student",
                 new { Action = "SelectAll" },
                 commandType: CommandType.StoredProcedure
             );
@@ -67,7 +67,7 @@ namespace MasterApi.Services
 
 
                 return await con.QueryFirstOrDefaultAsync<Student>(
-                    "sp_Student",
+                    "Pcsp_Student",
                     new { Action = "Select", StudentId = id },
                     commandType: CommandType.StoredProcedure
                 );
@@ -91,7 +91,7 @@ namespace MasterApi.Services
                 student.StudentId,
             };
 
-            return await con.ExecuteAsync("sp_Student", parameters, commandType: CommandType.StoredProcedure) > 0;
+            return await con.ExecuteAsync("Pcsp_Student", parameters, commandType: CommandType.StoredProcedure) > 0;
         }
     }
 }

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeEF\HomeEF.csproj" />
+    <ProjectReference Include="..\FileStorage\FileStorage.csproj" />
   </ItemGroup>
 
 </Project>

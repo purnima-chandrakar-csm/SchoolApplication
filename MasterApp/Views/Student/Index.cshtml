@@ -15,6 +15,18 @@
     <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
 }
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["UploadedPath"] != null)
+{
+    <p>
+        <a asp-action="Download" asp-route-path="@TempData["UploadedPath"]" class="btn btn-outline-primary">Download uploaded file</a>
+    </p>
+}
+
 <table class="table table-striped">
     <thead>
         <tr>
